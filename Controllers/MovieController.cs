@@ -28,64 +28,64 @@ namespace John_Smith_Movies_Watched_2021_API.Controllers
             _context = context;
         }
 
-        // GET: api/Pet
+        // GET: api/Movie
         //
-        // Returns a list of all your Pets
+        // Returns a list of all your Movies
         //
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Pet>>> GetPets()
+        public async Task<ActionResult<IEnumerable<Movie>>> GetMovies()
         {
-            // Uses the database context in `_context` to request all of the Pets, sort
+            // Uses the database context in `_context` to request all of the Movies, sort
             // them by row id and return them as a JSON array.
-            return await _context.Pets.OrderBy(row => row.Id).ToListAsync();
+            return await _context.Movies.OrderBy(row => row.Id).ToListAsync();
         }
 
-        // GET: api/Pet/5
+        // GET: api/Movie/5
         //
-        // Fetches and returns a specific pet by finding it by id. The id is specified in the
+        // Fetches and returns a specific Movie by finding it by id. The id is specified in the
         // URL. In the sample URL above it is the `5`.  The "{id}" in the [HttpGet("{id}")] is what tells dotnet
         // to grab the id from the URL. It is then made available to us as the `id` argument to the method.
         //
         [HttpGet("{id}")]
-        public async Task<ActionResult<Pet>> GetPet(int id)
+        public async Task<ActionResult<Movie>> GetMovie(int id)
         {
-            // Find the pet in the database using `FindAsync` to look it up by id
-            var pet = await _context.Pets.FindAsync(id);
+            // Find the Movie in the database using `FindAsync` to look it up by id
+            var Movie = await _context.Movies.FindAsync(id);
 
             // If we didn't find anything, we receive a `null` in return
-            if (pet == null)
+            if (Movie == null)
             {
-                // Return a `404` response to the client indicating we could not find a pet with this id
+                // Return a `404` response to the client indicating we could not find a Movie with this id
                 return NotFound();
             }
 
-            // Return the pet as a JSON object.
-            return pet;
+            // Return the Movie as a JSON object.
+            return Movie;
         }
 
-        // PUT: api/Pet/5
+        // PUT: api/Movie/5
         // 
-        // Update an individual pet with the requested id. The id is specified in the URL
+        // Update an individual Movie with the requested id. The id is specified in the URL
         // In the sample URL above it is the `5`. The "{id} in the [HttpPut("{id}")] is what tells dotnet
         // to grab the id from the URL. It is then made available to us as the `id` argument to the method.
         //
-        // In addition the `body` of the request is parsed and then made available to us as a Pet
-        // variable named pet. The controller matches the keys of the JSON object the client
-        // supplies to the names of the attributes of our Pet POCO class. This represents the
+        // In addition the `body` of the request is parsed and then made available to us as a Movie
+        // variable named Movie. The controller matches the keys of the JSON object the client
+        // supplies to the names of the attributes of our Movie POCO class. This represents the
         // new values for the record.
         //
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutPet(int id, Pet pet)
+        public async Task<IActionResult> PutMovie(int id, Movie Movie)
         {
             // If the ID in the URL does not match the ID in the supplied request body, return a bad request
-            if (id != pet.Id)
+            if (id != Movie.Id)
             {
                 return BadRequest();
             }
 
-            // Tell the database to consider everything in pet to be _updated_ values. When
-            // the save happens the database will _replace_ the values in the database with the ones from pet
-            _context.Entry(pet).State = EntityState.Modified;
+            // Tell the database to consider everything in Movie to be _updated_ values. When
+            // the save happens the database will _replace_ the values in the database with the ones from Movie
+            _context.Entry(Movie).State = EntityState.Modified;
 
             try
             {
@@ -96,7 +96,7 @@ namespace John_Smith_Movies_Watched_2021_API.Controllers
             {
                 // Ooops, looks like there was an error, so check to see if the record we were
                 // updating no longer exists.
-                if (!PetExists(id))
+                if (!MovieExists(id))
                 {
                     // If the record we tried to update was already deleted by someone else,
                     // return a `404` not found
@@ -111,37 +111,37 @@ namespace John_Smith_Movies_Watched_2021_API.Controllers
             }
 
             // Return a copy of the updated data
-            return Ok(pet);
+            return Ok(Movie);
         }
 
-        // POST: api/Pet
+        // POST: api/Movie
         //
-        // Creates a new pet in the database.
+        // Creates a new Movie in the database.
         //
-        // The `body` of the request is parsed and then made available to us as a Pet
-        // variable named pet. The controller matches the keys of the JSON object the client
-        // supplies to the names of the attributes of our Pet POCO class. This represents the
+        // The `body` of the request is parsed and then made available to us as a Movie
+        // variable named Movie. The controller matches the keys of the JSON object the client
+        // supplies to the names of the attributes of our Movie POCO class. This represents the
         // new values for the record.
         //
         [HttpPost]
-        public async Task<ActionResult<Pet>> PostPet(Pet pet)
+        public async Task<ActionResult<Movie>> PostMovie(Movie Movie)
         {
 
-            _context.Pets.Add(pet);
+            _context.Movies.Add(Movie);
             await _context.SaveChangesAsync();
 
             // Return a response that indicates the object was created (status code `201`) and some additional
             // headers with details of the newly created object.
-            return CreatedAtAction("GetPet", new { id = pet.Id }, pet);
+            return CreatedAtAction("GetMovie", new { id = Movie.Id }, Movie);
         }
 
         // [HttpPost("{id}/Playtimes")]
-        // public async Task<ActionResult<Pet>> Playtime(int id)
+        // public async Task<ActionResult<Movie>> Playtime(int id)
         // {
-        //     var petToAddPlaytime = await _context.Pets.FindAsync(id);
+        //     var MovieToAddPlaytime = await _context.Movies.FindAsync(id);
         //     var newPlaytime = new Playtime();
 
-        //     if (petToAddPlaytime == null)
+        //     if (MovieToAddPlaytime == null)
         //     {
         //         return NotFound();
         //     }
@@ -149,8 +149,8 @@ namespace John_Smith_Movies_Watched_2021_API.Controllers
         //     {
         //         newPlaytime.Id = id;
 
-        //         petToAddPlaytime.HappinessLevel += 5;
-        //         petToAddPlaytime.HungerLevel += 3;
+        //         MovieToAddPlaytime.HappinessLevel += 5;
+        //         MovieToAddPlaytime.HungerLevel += 3;
         //     }
 
         //     await _context.SaveChangesAsync();
@@ -158,43 +158,43 @@ namespace John_Smith_Movies_Watched_2021_API.Controllers
 
         //     // Return a response that indicates the object was created (status code `201`) and some additional
         //     // headers with details of the newly created object.
-        //     return CreatedAtAction("GetPet", new { Id = petToAddPlaytime.Id }, petToAddPlaytime);
+        //     return CreatedAtAction("GetMovie", new { Id = MovieToAddPlaytime.Id }, MovieToAddPlaytime);
         //     //return CreatedAtAction("GetPlaytime", new { Id = newPlaytime.Id }, newPlaytime);
 
 
         // }
 
-        // DELETE: api/Pet/5
+        // DELETE: api/Movie/5
         //
-        // Deletes an individual pet with the requested id. The id is specified in the URL
+        // Deletes an individual Movie with the requested id. The id is specified in the URL
         // In the sample URL above it is the `5`. The "{id} in the [HttpDelete("{id}")] is what tells dotnet
         // to grab the id from the URL. It is then made available to us as the `id` argument to the method.
         //
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeletePet(int id)
+        public async Task<IActionResult> DeleteMovie(int id)
         {
-            // Find this pet by looking for the specific id
-            var pet = await _context.Pets.FindAsync(id);
-            if (pet == null)
+            // Find this Movie by looking for the specific id
+            var Movie = await _context.Movies.FindAsync(id);
+            if (Movie == null)
             {
-                // There wasn't a pet with that id so return a `404` not found
+                // There wasn't a Movie with that id so return a `404` not found
                 return NotFound();
             }
 
             // Tell the database we want to remove this record
-            _context.Pets.Remove(pet);
+            _context.Movies.Remove(Movie);
 
             // Tell the database to perform the deletion
             await _context.SaveChangesAsync();
 
             // Return a copy of the deleted data
-            return Ok(pet);
+            return Ok(Movie);
         }
 
-        // Private helper method that looks up an existing pet by the supplied id
-        private bool PetExists(int id)
+        // Private helper method that looks up an existing Movie by the supplied id
+        private bool MovieExists(int id)
         {
-            return _context.Pets.Any(pet => pet.Id == id);
+            return _context.Movies.Any(Movie => Movie.Id == id);
         }
     }
 }

@@ -5,7 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using John_Smith_Movies_Watched_2021.Models;
+using John_Smith_Movies_Watched_2021_API.Models;
 
 namespace John_Smith_Movies_Watched_2021
 {

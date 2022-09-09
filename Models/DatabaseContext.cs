@@ -7,6 +7,8 @@ namespace John_Smith_Movies_Watched_2021.Models
 {
     public partial class DatabaseContext : DbContext
     {
+
+        public DBSet<Movie> Movies { get; set; }
         // Change this if you want to have a different database name in development
         private static string DEVELOPMENT_DATABASE_NAME = "John_Smith_Movies_Watched_2021Database";
 

@@ -10,12 +10,12 @@ using John_Smith_Movies_Watched_2021_API.Models;
 
 namespace John_Smith_Movies_Watched_2021_API.Controllers
 {
-    // All of these routes will be at the base URL:     /api/Pet
+    // All of these routes will be at the base URL:     /api/Movie
     // That is what "api/[controller]" means below. It uses the name of the controller
-    // in this case PetController to determine the URL
+    // in this case MovieController to determine the URL
     [Route("api/[controller]")]
     [ApiController]
-    public class PetController : ControllerBase
+    public class MovieController : ControllerBase
     {
         // This is the variable you use to have access to your database
         private readonly DatabaseContext _context;
@@ -134,34 +134,34 @@ namespace John_Smith_Movies_Watched_2021_API.Controllers
             return CreatedAtAction("GetPet", new { id = pet.Id }, pet);
         }
 
-        [HttpPost("{id}/Playtimes")]
-        public async Task<ActionResult<Pet>> Playtime(int id)
-        {
-            var petToAddPlaytime = await _context.Pets.FindAsync(id);
-            var newPlaytime = new Playtime();
+        // [HttpPost("{id}/Playtimes")]
+        // public async Task<ActionResult<Pet>> Playtime(int id)
+        // {
+        //     var petToAddPlaytime = await _context.Pets.FindAsync(id);
+        //     var newPlaytime = new Playtime();
 
-            if (petToAddPlaytime == null)
-            {
-                return NotFound();
-            }
-            else
-            {
-                newPlaytime.Id = id;
+        //     if (petToAddPlaytime == null)
+        //     {
+        //         return NotFound();
+        //     }
+        //     else
+        //     {
+        //         newPlaytime.Id = id;
 
-                petToAddPlaytime.HappinessLevel += 5;
-                petToAddPlaytime.HungerLevel += 3;
-            }
+        //         petToAddPlaytime.HappinessLevel += 5;
+        //         petToAddPlaytime.HungerLevel += 3;
+        //     }
 
-            await _context.SaveChangesAsync();
-
-
-            // Return a response that indicates the object was created (status code `201`) and some additional
-            // headers with details of the newly created object.
-            return CreatedAtAction("GetPet", new { Id = petToAddPlaytime.Id }, petToAddPlaytime);
-            //return CreatedAtAction("GetPlaytime", new { Id = newPlaytime.Id }, newPlaytime);
+        //     await _context.SaveChangesAsync();
 
 
-        }
+        //     // Return a response that indicates the object was created (status code `201`) and some additional
+        //     // headers with details of the newly created object.
+        //     return CreatedAtAction("GetPet", new { Id = petToAddPlaytime.Id }, petToAddPlaytime);
+        //     //return CreatedAtAction("GetPlaytime", new { Id = newPlaytime.Id }, newPlaytime);
+
+
+        // }
 
         // DELETE: api/Pet/5
         //

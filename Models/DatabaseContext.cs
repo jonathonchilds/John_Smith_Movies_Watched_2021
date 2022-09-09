@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
-namespace John_Smith_Movies_Watched_2021.Models
+namespace John_Smith_Movies_Watched_2021_API.Models
 {
     public partial class DatabaseContext : DbContext
     {

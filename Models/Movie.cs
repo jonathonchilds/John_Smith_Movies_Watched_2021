@@ -4,7 +4,7 @@ namespace John_Smith_Movies_Watched_2021_API.Models
 {
     public class Movie
     {
-        public int Show_Id { get; set; }
+        public int Id { get; set; }
         public string Type { get; set; }
         public string Title { get; set; }
         public string Director { get; set; }

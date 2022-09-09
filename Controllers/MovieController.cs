@@ -37,7 +37,7 @@ namespace John_Smith_Movies_Watched_2021_API.Controllers
         {
             // Uses the database context in `_context` to request all of the Movies, sort
             // them by row id and return them as a JSON array.
-            return await _context.Movies.OrderBy(row => row.Id).ToListAsync();
+            return await _context.Movies.OrderBy(row => row.Show_Id).ToListAsync();
         }
 
         // GET: api/Movie/5
@@ -78,7 +78,7 @@ namespace John_Smith_Movies_Watched_2021_API.Controllers
         public async Task<IActionResult> PutMovie(int id, Movie Movie)
         {
             // If the ID in the URL does not match the ID in the supplied request body, return a bad request
-            if (id != Movie.Id)
+            if (id != Movie.Show_Id)
             {
                 return BadRequest();
             }
@@ -132,7 +132,7 @@ namespace John_Smith_Movies_Watched_2021_API.Controllers
 
             // Return a response that indicates the object was created (status code `201`) and some additional
             // headers with details of the newly created object.
-            return CreatedAtAction("GetMovie", new { id = Movie.Id }, Movie);
+            return CreatedAtAction("GetMovie", new { id = Movie.Show_Id }, Movie);
         }
 
         // [HttpPost("{id}/Playtimes")]
@@ -147,7 +147,7 @@ namespace John_Smith_Movies_Watched_2021_API.Controllers
         //     }
         //     else
         //     {
-        //         newPlaytime.Id = id;
+        //         newPlaytime.Show_Id = id;
 
         //         MovieToAddPlaytime.HappinessLevel += 5;
         //         MovieToAddPlaytime.HungerLevel += 3;
@@ -158,8 +158,8 @@ namespace John_Smith_Movies_Watched_2021_API.Controllers
 
         //     // Return a response that indicates the object was created (status code `201`) and some additional
         //     // headers with details of the newly created object.
-        //     return CreatedAtAction("GetMovie", new { Id = MovieToAddPlaytime.Id }, MovieToAddPlaytime);
-        //     //return CreatedAtAction("GetPlaytime", new { Id = newPlaytime.Id }, newPlaytime);
+        //     return CreatedAtAction("GetMovie", new { Show_Id = MovieToAddPlaytime.Show_Id }, MovieToAddPlaytime);
+        //     //return CreatedAtAction("GetPlaytime", new { Show_Id = newPlaytime.Show_Id }, newPlaytime);
 
 
         // }
@@ -194,7 +194,7 @@ namespace John_Smith_Movies_Watched_2021_API.Controllers
         // Private helper method that looks up an existing Movie by the supplied id
         private bool MovieExists(int id)
         {
-            return _context.Movies.Any(Movie => Movie.Id == id);
+            return _context.Movies.Any(Movie => Movie.Show_Id == id);
         }
     }
 }

@@ -22,7 +22,7 @@ namespace John_Smith_Movies_Watched_2021_API.Controllers
 
         // Constructor that receives a reference to your database context
         // and stores it in _context for you to use in your API methods
-        public PetController(DatabaseContext context)
+        public MovieController(DatabaseContext context)
         {
             _context = context;
         }

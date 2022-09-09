@@ -11,17 +11,15 @@ namespace John_Smith_Movies_Watched_2021
 {
     public class Startup
     {
-        // When the system starts up, we will be given a configuration variable.
-        // we will save this in a property named `Configuration`
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
-        // Where we store our program's configuration
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+
         public void ConfigureServices(IServiceCollection services)
         {
             // Use NewtonsoftJson to avoid JSON cyclical loops
@@ -43,7 +41,7 @@ namespace John_Smith_Movies_Watched_2021
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            // If we are in development
+
             if (env.IsDevelopment())
             {
                 // Use a friendly error page that helps the developer.
@@ -53,7 +51,7 @@ namespace John_Smith_Movies_Watched_2021
             }
             else
             {
-                // Only enforce https in production
+
                 app.UseHttpsRedirection();
 
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.

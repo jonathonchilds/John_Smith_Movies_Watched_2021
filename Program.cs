@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using John_Smith_Movies_Watched_2021_API.Models;
 using John_Smith_Movies_Watched_2021.Utils;
+using CsvHelper;
 
 namespace John_Smith_Movies_Watched_2021
 {

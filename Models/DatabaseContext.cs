@@ -2,6 +2,7 @@
 using System.Text.RegularExpressions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using CsvHelper;
 
 namespace John_Smith_Movies_Watched_2021_API.Models
 {

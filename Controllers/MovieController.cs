@@ -37,7 +37,7 @@ namespace John_Smith_Movies_Watched_2021_API.Controllers
         {
             // Uses the database context in `_context` to request all of the Movies, sort
             // them by row id and return them as a JSON array.
-            return await _context.Movies.OrderBy(row => row.Id).ToListAsync();
+            return View(db.Movies.ToList());
         }
 
         // GET: api/Movie/5
